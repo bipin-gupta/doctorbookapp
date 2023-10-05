@@ -1,8 +1,11 @@
-import React from 'react';
-import { View, ScrollView, StyleSheet, Image, Text } from 'react-native';
+import React, {useState} from 'react';
+import { View, ScrollView, StyleSheet, Image, Text, TouchableOpacity } from 'react-native';
 import { Card } from 'react-native-paper';
 import FontAwesome
 from 'react-native-vector-icons/FontAwesome'
+import Modal from "react-native-modal";
+import AppointmentBookingPage from './Booknow';
+
 
 const data = [
   { id: 1, name: `Dr.
@@ -16,6 +19,7 @@ Vaishnavi Todkar`, content: 'Neurosurgeon',date: "17th jan, ",image: require('..
 ];
 
 const HorizontalCardGrid = () => {
+  const [visible, setVisible]= useState(false)
   return (
        <View style={styles.records34}>
     <ScrollView horizontal style={styles.scrollView}>
@@ -147,11 +151,24 @@ const HorizontalCardGrid = () => {
                          <View style={[styles.phonecircle, styles.bottomphonecircle]} >
                          <FontAwesome style={styles.bottomphone} name="phone" size={34}/>
                          </View>
+                         <TouchableOpacity style={{ }}
+                          onPress={()=> {
+                            setVisible(true)
+                        }}
+                        >
                          <View style={[styles.group3883, styles.booklayout]}>
                          <View style={[styles.bookborder]} >
               <Text style={[styles.book]}>Book</Text>
+              
             </View>
             </View>
+            </TouchableOpacity>
+            <Modal transparent={true} style={{backgroundColor: 'white', }}
+            isVisible ={visible} onBackButtonPress={() => {
+            setVisible(false)
+        }}>
+       <AppointmentBookingPage/>
+      </Modal>
 
 
 
@@ -552,8 +569,8 @@ const styles = StyleSheet.create({
   bookborder: {
     borderRadius: 50,
     backgroundColor: "rgba(255, 219, 94, 0.20)",
-    top: 0,
-    left: 0,
+    bottom: 22,
+    right: 18,
     width: 133,
     height: 50,
     position: "absolute",
@@ -610,11 +627,7 @@ const styles = StyleSheet.create({
     elevation: 4, // Shadow depth (Android)
     
   },
-  flex: 1,
-  height: 812,
-  overflow: "hidden",
-  width: "100%",
-  backgroundColor: "white",
+
 });
 
 
