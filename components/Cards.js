@@ -556,7 +556,7 @@ const styles = StyleSheet.create({
   },
   videoWednesday: {
     top: 140,
-    fontFamily: "poppins",
+    fontFamily: "Roboto",
     left: 19,
     fontSize: 17,
   },
