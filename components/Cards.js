@@ -1,188 +1,211 @@
-import React, {useState} from 'react';
-import { View, ScrollView, StyleSheet, Image, Text, TouchableOpacity } from 'react-native';
-import { Card } from 'react-native-paper';
-import FontAwesome
-from 'react-native-vector-icons/FontAwesome'
+import React, { useState } from "react";
+import {
+  View,
+  ScrollView,
+  StyleSheet,
+  Image,
+  Text,
+  TouchableOpacity,
+} from "react-native";
+import { Card } from "react-native-paper";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Modal from "react-native-modal";
-import AppointmentBookingPage from './Booknow';
-
+import AppointmentBookingPage from "./Booknow";
 
 const data = [
-  { id: 1, name: `Dr.
-Aashis Prasad`, content: 'Neurosurgeon',date: "27th jan, ", image: require('../assets/images/bottomimg1.png') },
-  { id: 2, name: `Dr. 
-Vaishnavi Todkar`, content: 'Neurosurgeon',date: "17th jan, ",image: require('../assets/images/bottomimg2.png') },
-  { id: 3, name: `Dr.
-  Rahul Mondal`, content: 'Neurosurgeon',date: "27th jan, ",image: require('../assets/images/bottomimg2.png') },
+  {
+    id: 1,
+    name: `Dr.
+Aashis Prasad`,
+    content: "Neurosurgeon",
+    date: "27th jan, ",
+    image: require("../assets/images/bottomimg1.png"),
+  },
+  {
+    id: 2,
+    name: `Dr. 
+Vaishnavi Todkar`,
+    content: "Neurosurgeon",
+    date: "17th jan, ",
+    image: require("../assets/images/bottomimg2.png"),
+  },
+  {
+    id: 3,
+    name: `Dr.
+  Rahul Mondal`,
+    content: "Neurosurgeon",
+    date: "27th jan, ",
+    image: require("../assets/images/bottomimg2.png"),
+  },
 
   // Add more card data as needed
 ];
 
 const HorizontalCardGrid = () => {
-  const [visible, setVisible]= useState(false)
+  const [visible, setVisible] = useState(false);
   return (
-       <View style={styles.records34}>
-    <ScrollView horizontal style={styles.scrollView}>
-      {data.map(card => (
-        <View style={styles.cardContainer} key={card.id}>
-          <Card style={styles.card}>
-            <Card.Content style={styles.cardContent}>
-              <View style={styles.imageContainer}>
-                <Image
-                  source={require('../assets/images/img1.png')}
-                  style={styles.circularImage}
-                />
-              </View>
-              <View style={[styles.group3860, styles.groupPosition]}>
-
-              <Text style={styles.in5DaysToGo}>in - 5 days to go</Text>
-              <Text style={styles.monJan21}>
-                  <Text style={styles.text43}>{`23 `}</Text>
-                  <Text style={styles.mon}>Mon</Text>
-                  <Text style={styles.text43}>{`, `}</Text>
-                  <Text style={styles.jan}>Jan</Text>
-                  <Text style={styles.text43}>{` `}</Text>
-                  <Text style={styles.text46}>21</Text>
-                </Text>
-                <View style={[styles.group3858, styles.groupLayout]}>
-                  <View style={[styles.rectangle41, styles.groupLayout]} />
-                  <Text style={[styles.texttime, styles.text47Typo]}>13:30</Text>
+    <View style={styles.records34}>
+      <ScrollView horizontal style={styles.scrollView}>
+        {data.map((card) => (
+          <View style={styles.cardContainer} key={card.id}>
+            <Card style={styles.card}>
+              <Card.Content style={styles.cardContent}>
+                <View style={styles.imageContainer}>
+                  <Image
+                    source={require("../assets/images/img1.png")}
+                    style={styles.circularImage}
+                  />
                 </View>
-       </View>
-              <View style={[styles.group3861, styles.groupPosition]}>
-                <Text
-                  style={[styles.arrundathiClinicOfLasorT, styles.text47Typo]}
-                >{`Arrundathi Clinic of Laproscopy & Lasor Treatments`}</Text>
-                <Text style={styles.c66MedicalCenterLinkCor}>
-                  C/66, Medical Center, Link Corner Mall, Behind KFC, Linking
-                  Road, Bandra West
+                <View style={[styles.group3860, styles.groupPosition]}>
+                  <Text style={styles.in5DaysToGo}>in - 5 days to go</Text>
+                  <Text style={styles.monJan21}>
+                    <Text style={styles.text43}>{`23 `}</Text>
+                    <Text style={styles.mon}>Mon</Text>
+                    <Text style={styles.text43}>{`, `}</Text>
+                    <Text style={styles.jan}>Jan</Text>
+                    <Text style={styles.text43}>{` `}</Text>
+                    <Text style={styles.text46}>21</Text>
+                  </Text>
+                  <View style={[styles.group3858, styles.groupLayout]}>
+                    <View style={[styles.rectangle41, styles.groupLayout]} />
+                    <Text style={[styles.texttime, styles.text47Typo]}>
+                      13:30
+                    </Text>
+                  </View>
+                </View>
+                <View style={[styles.group3861, styles.groupPosition]}>
+                  <Text
+                    style={[styles.arrundathiClinicOfLasorT, styles.text47Typo]}
+                  >{`Arrundathi Clinic of Laproscopy & Lasor Treatments`}</Text>
+                  <Text style={styles.c66MedicalCenterLinkCor}>
+                    C/66, Medical Center, Link Corner Mall, Behind KFC, Linking
+                    Road, Bandra West
+                  </Text>
+                </View>
+                <Text style={[styles.drSwapnilKatare, styles.groupLayout]}>
+                  Dr. Swapnil Katare
                 </Text>
-              </View>
-              <Text style={[styles.drSwapnilKatare, styles.groupLayout]}>
-                Dr. Swapnil Katare
-              </Text>
-              <Text style={styles.neurosurgeon}>Neurosurgeon</Text>
-              <View style={[styles.group3851, styles.groupLayout]}>
-                <Text style={[styles.text3750, styles.groupLayout]}>3750</Text>
-                <Text  style={styles.rupee}> ₹
-                 
-               </Text>
-              </View>  
-              <FontAwesome style={[styles.phonecard, styles.phonecardlayout]} name="phone" size={22}/>
-                         
-
-
-            </Card.Content>
-          </Card>
-        
-        </View>
-        
-      ))}
-    </ScrollView>
-    <Text style={[styles.emrsPreviousRec, styles.emrsPreviousRecTypo]}>
+                <Text style={styles.neurosurgeon}>Neurosurgeon</Text>
+                <View style={[styles.group3851, styles.groupLayout]}>
+                  <Text style={[styles.text3750, styles.groupLayout]}>
+                    3750
+                  </Text>
+                  <Text style={styles.rupee}> ₹</Text>
+                </View>
+                <FontAwesome
+                  style={[styles.phonecard, styles.phonecardlayout]}
+                  name="phone"
+                  size={22}
+                />
+              </Card.Content>
+            </Card>
+          </View>
+        ))}
+      </ScrollView>
+      <Text style={[styles.emrsPreviousRec, styles.emrsPreviousRecTypo]}>
         EMR’s / Previous Records
       </Text>
       <View style={styles.imageContainer}>
-                <Image
-                  source={require('../assets/images/previmg1.png')}
-                  horizontal
-                  
-                  style={styles.prevrecimg}
-                />
-                 <Image
-                  source={require('../assets/images/previmg2.png')}
-                  horizontal
-                  style={styles.prevrecimg}
-                />
-                 <Image
-                  source={require('../assets/images/previmg3.png')}
-                  
-                  style={styles.prevrecimg}
-                />
-                
-              </View>
-              <View style={styles.group3844}>
+        <Image
+          source={require("../assets/images/previmg1.png")}
+          horizontal
+          style={styles.prevrecimg}
+        />
+        <Image
+          source={require("../assets/images/previmg2.png")}
+          horizontal
+          style={styles.prevrecimg}
+        />
+        <Image
+          source={require("../assets/images/previmg3.png")}
+          style={styles.prevrecimg}
+        />
+      </View>
+      <View style={styles.group3844}>
         <Text style={[styles.text2]}>+</Text>
       </View>
       <ScrollView horizontal style={styles.scrollView}>
-      {data.map(card => (
-        <View style={styles.cardContainer} key={card.id}>
-          <Card style={styles.bottomcard}>
-            <Card.Content style={styles.cardContent}>
-              <View style={[styles.imageContainer]}>
+        {data.map((card) => (
+          <View style={styles.cardContainer} key={card.id}>
+            <Card style={styles.bottomcard}>
+              <Card.Content style={styles.cardContent}>
+                <View style={[styles.imageContainer]}>
+                  <Image
+                    source={card.image}
+                    style={[
+                      styles.circularImage,
+                      styles.rectangle1654Icon,
+                      styles.iconPosition1,
+                    ]}
+                    resizeMode="cover"
+                  />
+                </View>
 
-                <Image
+                <View style={styles.circleContainer}>
+                  <View style={styles.circle} />
+                </View>
 
-                  source={card.image}
-                  style={[styles.circularImage, styles.rectangle1654Icon, styles.iconPosition1]}
-                  resizeMode="cover"
+                <Text style={[styles.text7, styles.text13]}>13</Text>
+                <View style={[styles.ellipse267, styles.ellipse267Layout]}>
+                  <Text style={[styles.bottomplus, styles.bookTypo]}>+</Text>
+                </View>
+                <Text style={[styles.bottomdocname]}>{card.name}</Text>
 
-                />
-              </View>
+                <Text style={[styles.ayurveda]}>Ayurveda</Text>
+                <Text style={[styles.thJan20, styles.bookLayout]}>
+                  <Text style={styles.bookTypo}>
+                    <Text style={styles.jan27}>{card.date}</Text>
+                    <Text style={styles.text20}>20</Text>
+                  </Text>
+                </Text>
+                <Text style={[styles.videoWednesday, styles.bookLayout]}>
+                  <Text style={styles.jan27}>Video</Text>
+                  <Text style={styles.text5}> - Wednesday</Text>
+                </Text>
 
-              <View style={styles.circleContainer}>
-      <View style={styles.circle} />
+                <View style={[styles.phonecircle, styles.bottomphonecircle]}>
+                  <FontAwesome
+                    style={styles.bottomphone}
+                    name="phone"
+                    size={34}
+                  />
+                </View>
+                <TouchableOpacity
+                  style={{}}
+                  onPress={() => {
+                    setVisible(true);
+                  }}
+                >
+                  <View style={[styles.group3883, styles.booklayout]}>
+                    <View style={[styles.bookborder]}>
+                      <Text style={[styles.book]}>Book</Text>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+                <Modal
+                  // transparent={false}
+                  style={{
+                    backgroundColor: "rgba(255, 255, 255, 0.1)", // Increase the opacity here
+                    width: "100%",
+                    marginLeft: 0,
+                    marginRight: 0,
+                    //top: "45%",
+                    borderTopLeftRadius: 30,
+                    borderTopRightRadius: 30,
+                  }}
+                  isVisible={visible}
+                  onBackButtonPress={() => {
+                    setVisible(false);
+                  }}
+                >
+                  <AppointmentBookingPage />
+                </Modal>
+              </Card.Content>
+            </Card>
+          </View>
+        ))}
+      </ScrollView>
     </View>
-              
-             
-             
-           
-       <Text style={[styles.text7, styles.text13]}>13</Text>
-       <View style={[styles.ellipse267, styles.ellipse267Layout]}>
-                <Text style={[styles.bottomplus, styles.bookTypo]}>+</Text>
-              </View>
-       <Text
-              style={[styles.bottomdocname]}
-            >{card.name}</Text>
-           
-
-            <Text style={[styles.ayurveda]}>Ayurveda</Text>
-            <Text style={[styles.thJan20, styles.bookLayout]}>
-            <Text style={styles.bookTypo}>
-            <Text style={styles.jan27}>{card.date}</Text>
-            <Text style={styles.text20}>20</Text>
-            </Text>
-</Text>
-<Text style={[styles.videoWednesday, styles.bookLayout]}>
-                <Text style={styles.jan27}>Video</Text>
-                <Text style={styles.text5}> - Wednesday</Text>
-              </Text>
-
-                         <View style={[styles.phonecircle, styles.bottomphonecircle]} >
-                         <FontAwesome style={styles.bottomphone} name="phone" size={34}/>
-                         </View>
-                         <TouchableOpacity style={{ }}
-                          onPress={()=> {
-                            setVisible(true)
-                        }}
-                        >
-                         <View style={[styles.group3883, styles.booklayout]}>
-                         <View style={[styles.bookborder]} >
-              <Text style={[styles.book]}>Book</Text>
-              
-            </View>
-            </View>
-            </TouchableOpacity>
-            <Modal transparent={true} style={{backgroundColor: 'white', }}
-            isVisible ={visible} onBackButtonPress={() => {
-            setVisible(false)
-        }}>
-       <AppointmentBookingPage/>
-      </Modal>
-
-
-
-                
-
-
-            </Card.Content>
-          </Card>
-        
-        </View>
-        
-      ))}
-    </ScrollView>
-</View>
   );
 };
 
@@ -249,7 +272,7 @@ const styles = StyleSheet.create({
   // card calender end
   arrundathiClinicOfLasorT: {
     // marginTop: 80,
-    
+
     fontFamily: "Roboto",
     fontSize: 15,
     top: 60,
@@ -258,7 +281,6 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   c66MedicalCenterLinkCor: {
-
     height: "",
     top: 107,
     fontFamily: "Roboto",
@@ -310,7 +332,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   scrollView: {
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   cardContainer: {
     margin: 8,
@@ -320,53 +342,51 @@ const styles = StyleSheet.create({
     height: 209,
     flexShrink: 0,
     borderRadius: 7,
-    backgroundColor: '#FFF',
-    shadowColor: '#000',
+    backgroundColor: "#FFF",
+    shadowColor: "#000",
     shadowOffset: { width: -1, height: 1 },
     shadowOpacity: 0.6,
     shadowRadius: 6,
     elevation: 4,
   },
   cardContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   imageContainer: {
     marginHorizontal: 0,
- bottom: 11,
- flexDirection: "row"
-  
+    bottom: 11,
+    flexDirection: "row",
   },
- circularImage:{marginTop:5},
+  circularImage: { marginTop: 5 },
   textContainer: {
     marginLeft: 8,
   },
 
   doctor: {
     fontSize: 17,
-    color: '#4A4A4A',
-
+    color: "#4A4A4A",
   },
   content: {
     fontSize: 15,
-    color: '#393939',
-    fontStyle: 'normal',
-    fontWeight: '400',
+    color: "#393939",
+    fontStyle: "normal",
+    fontWeight: "400",
   },
-  phone:{
-    marginLeft:"auto",
+  phone: {
+    marginLeft: "auto",
     marginBottom: 11,
-    color:"#C08A53"
+    color: "#C08A53",
   },
   phonecard: {
-    color:"#CD9C68",
+    color: "#CD9C68",
     top: 19,
     bottom: "85.65%",
     left: 295,
   },
   phonecardlayout: {
     width: "5.86%",
-   
+
     maxHeight: "100%",
     maxWidth: "100%",
     position: "absolute",
@@ -382,24 +402,23 @@ const styles = StyleSheet.create({
     top: 0,
     fontWeight: "500",
   },
- 
+
   group3851: {
     left: 263,
     width: 50,
     height: 19,
     top: 47,
   },
- rupee:{
-  color:"#CD9C68"
- },
-
+  rupee: {
+    color: "#CD9C68",
+  },
 
   // previous records start
   emrsPreviousRecTypo: {
     fontSize: 20,
-    
+
     textAlign: "left",
-    color:"#4A4A4A",
+    color: "#4A4A4A",
     fontWeight: "600",
     fontFamily: "Roboto",
     position: "absolute",
@@ -408,10 +427,10 @@ const styles = StyleSheet.create({
     top: 280,
     left: 20,
     textAlign: "left",
-    color:"#4A4A4A",
+    color: "#4A4A4A",
     fontWeight: "600",
   },
-  prevrecimg :{
+  prevrecimg: {
     left: 20,
     bottom: 39,
     width: 60, // Set the width of the images as needed
@@ -419,8 +438,8 @@ const styles = StyleSheet.create({
     marginRight: 8, // Add margin between images if needed
     borderRadius: 25,
     flexShrink: 0,
-    marginRight: 17
-     // Make the images circular if desired
+    marginRight: 17,
+    // Make the images circular if desired
   },
 
   group3844: {
@@ -439,7 +458,6 @@ const styles = StyleSheet.create({
     left: 0,
     position: "absolute",
     textAlign: "left",
-
   },
   // prev records end
   // bottom card start
@@ -448,8 +466,8 @@ const styles = StyleSheet.create({
     height: 237,
     flexShrink: 0,
     borderRadius: 7,
-    backgroundColor: '#FFF',
-    shadowColor: '#000',
+    backgroundColor: "#FFF",
+    shadowColor: "#000",
     shadowOffset: { width: -1, height: 1 },
     shadowOpacity: 0.6,
     shadowRadius: 6,
@@ -467,10 +485,10 @@ const styles = StyleSheet.create({
     left: 8,
     position: "absolute",
   },
-  rectangle1654Icon:{
+  rectangle1654Icon: {
     borderRadius: 22,
- borderWidth: 3,
-    borderColor: '#FF006B',
+    borderWidth: 3,
+    borderColor: "#FF006B",
   },
   iconPosition1: {
     marginLeft: 10,
@@ -491,8 +509,8 @@ const styles = StyleSheet.create({
     width: 11, // Diameter of the circle
     height: 11, // Diameter of the circle
     borderRadius: 13, // Radius of the circle
-    backgroundColor: '#89FF09', // Color of the circle
-    shadowColor: 'rgba(214, 214, 214, 0.25)', // Shadow color (iOS)
+    backgroundColor: "#89FF09", // Color of the circle
+    shadowColor: "rgba(214, 214, 214, 0.25)", // Shadow color (iOS)
     shadowOffset: { width: 1, height: 1 }, // Shadow offset (iOS)
     shadowOpacity: 1, // Shadow opacity (iOS)
     shadowRadius: 25, // Shadow blur radius (iOS)
@@ -520,7 +538,7 @@ const styles = StyleSheet.create({
   },
   jan27: {
     color: "#390969",
-    fontWeight: "500"
+    fontWeight: "500",
   },
   thJan20: {
     top: 107,
@@ -553,18 +571,17 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 175,
     left: 19,
-    borderRadius: 25, 
+    borderRadius: 25,
   },
-  bottomphone:{
-    marginLeft:"auto",
+  bottomphone: {
+    marginLeft: "auto",
     width: 27,
     height: 37,
     marginBottom: 11,
-    color:"#21BC08",
+    color: "#21BC08",
     top: 9,
     left: 11,
     position: "absolute",
-
   },
   bookborder: {
     borderRadius: 50,
@@ -575,7 +592,6 @@ const styles = StyleSheet.create({
     height: 50,
     position: "absolute",
   },
-
 
   book: {
     top: 12,
@@ -592,7 +608,7 @@ const styles = StyleSheet.create({
     left: 98,
     top: 175,
   },
-  booklayout:{
+  booklayout: {
     width: 133,
     height: 50,
     position: "absolute",
@@ -608,11 +624,10 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     width: 18,
     height: 25,
-    bottom: 2
+    bottom: 2,
   },
- 
-  ellipse267Layout: {
 
+  ellipse267Layout: {
     top: 8,
     backgroundColor: "white",
     height: 24,
@@ -620,15 +635,12 @@ const styles = StyleSheet.create({
     left: 210,
     borderRadius: 12,
     position: "absolute",
-    shadowColor: 'rgba(69, 69, 69, 0.20)', // Shadow color (iOS)
+    shadowColor: "rgba(69, 69, 69, 0.20)", // Shadow color (iOS)
     shadowOffset: { width: 0, height: 2 }, // Shadow offset (iOS)
     shadowOpacity: 1, // Shadow opacity (iOS)
     shadowRadius: 4, // Shadow blur radius (iOS)
     elevation: 4, // Shadow depth (Android)
-    
   },
-
 });
-
 
 export default HorizontalCardGrid;
