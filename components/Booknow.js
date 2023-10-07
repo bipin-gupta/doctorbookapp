@@ -6,8 +6,11 @@ import {
   StyleSheet,
   Image,
   ScrollView,
+  PixelRatio
 } from "react-native";
 import { Card } from "react-native-paper";
+import Feather from "react-native-vector-icons/Feather";
+
 
 const dummyDate = [
   "Today",
@@ -28,6 +31,7 @@ const dummyDate = [
 ];
 
 const AppointmentBookingPage = () => {
+  const borderWidth = 1 * PixelRatio.get();
   const [selectedTime, setSelectedTime] = useState(null);
 
   const handleTimeSlotClick = (time) => {
@@ -52,7 +56,7 @@ const AppointmentBookingPage = () => {
           resizeMode="cover"
           source={require("../assets/images/imgslider.jpg")}
         />
-        <Text style={[styles.text21, styles.textTypo]}>23</Text>
+        <Text style={[styles.text23]}>23</Text>
         <View style={[styles.gouriKarnurkarParent, styles.groupChild7Position]}>
           <Text style={[styles.gouriKarnurkar1, styles.textTypo]}>
             Gouri Karnurkar
@@ -62,19 +66,22 @@ const AppointmentBookingPage = () => {
               <Text style={[styles.dentist, styles.bookTypo]}>Dentist</Text>
             </View>
             <Text style={[styles.km7, styles.bookTypo]}>~3.3km</Text>
-            <View style={[styles.parent, styles.parentLayout]}>
-              <Text style={[styles.text22, styles.textTypo]}>98%</Text>
+            <View style={[styles.parent98, styles.parentLayout]}>
+              <Text style={[styles.text98, styles.textTypo]}>98%</Text>
+              <Text style={[styles.text350, styles.text350Position]}> ₹ 350</Text>
+
               <Image
-                style={[styles.icons8ThumbsUp2, styles.parentLayout]}
+                style={[styles.iconsThumbsUp, styles.parentLayout]}
                 resizeMode="cover"
                 source={require("../assets/images/thumbsup.png")}
               />
             </View>
+        
           </View>
 
           </View>
           </View>
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView  contentContainerStyle={styles.container}>
      <View style={styles.card}>
      <Image
         style={[styles.rectangleIcon, styles.rectangleIconPosition]}
@@ -107,7 +114,7 @@ Appointment`}</Text>
                     styles.timeSlot,
                     {
                       backgroundColor:
-                        item === selectedTime ? "#4CAF50" : "#FFFFFF",
+                        item === selectedTime ? "#CC9B66" : "#FFFFFF",
                     },
                   ]}
                   onPress={() => handleTimeSlotClick(item)}
@@ -115,6 +122,7 @@ Appointment`}</Text>
                   <Text
                     style={{
                       color: item === selectedTime ? "#FFFFFF" : "#000000",
+                      fontWeight: item === selectedTime ? "700" : "normal"
                     }}
                   >
                     {item}
@@ -149,19 +157,24 @@ Appointment`}</Text>
       <TouchableOpacity
         style={[
           styles.bookNowButton,
-          { backgroundColor: selectedTime ? "#4CAF50" : "#CCCCCC" },
+          {  borderColor: selectedTime ? "#1A936F" : "#CCCCCC",
+          
+          borderWidth: 2, 
+          borderRadius: 10, 
+         },
         ]}
         disabled={!selectedTime}
       >
         <Text
           style={{
-            color: "#FFFFFF",
+            fontWeight: selectedTime ? "700" : "normal", 
+
+            color: selectedTime ? "#1A936F" : "#CCCCCC", 
             height: 35,
             width: 242,
             borderRadius: 2,
             borderColor: "#CACACA",
             fontSize: 22,
-            fontWeight: "500",
             textAlign: "center",
           }}
         >
@@ -171,11 +184,15 @@ Appointment`}</Text>
       </TouchableOpacity>
       
     </ScrollView>
+   
+      <Text style={[styles.newUser, styles.userTypo]}>New user</Text>
+      <Text style={[styles.changeUser, styles.userTypo]}>Change user</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  
   container: {
     flexGrow: 1,
     height: 457,
@@ -240,7 +257,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   bookNowButton: {
-    marginTop: 10,
+    marginTop: 23,
     paddingVertical: 5,
     paddingHorizontal: 20,
     borderRadius: 10,
@@ -257,7 +274,6 @@ const styles = StyleSheet.create({
   ophtamologistTypo: {
     color: "black",
     textAlign: "left",
-    fontFamily: "Roboto",
     position: "absolute",
   },
   rectangleIconPosition: {
@@ -348,14 +364,27 @@ const styles = StyleSheet.create({
   parent98: {
     left: 58,
     width: 41,
-    top: 20,
+    bottom: 17,
+
   },
   text98: {
-    top: 2,
     fontSize: 12,
     width: 26,
-    height: 12,
     fontWeight: "500",
+
+  },
+  textTypo: {
+    color: "white",
+    textAlign: "left",
+    fontFamily: "Roboto",
+    left: 0,
+  },
+  iconsThumbsUp: {
+    left: 24,
+    bottom: 17,
+    height: 15,
+    width: 15,
+    marginBottom: 60,
   },
   gouriKarnurkarParent: {
     left: 88,
@@ -371,6 +400,58 @@ const styles = StyleSheet.create({
     width: 59,
     borderRadius: 10,
     left: 16,
+  },
+  changeUser: {
+    top: 380,
+
+    left: 280,
+    color: "#1a936f",
+    borderBottomWidth: 1, borderBottomColor: '#1a936f' ,
+
+  },
+  newUser: {
+    borderBottomWidth: 1, borderBottomColor: '#0074DF' ,
+    top: 355,
+
+    left: 300,
+    color: "#0074DF",
+  },
+  userTypo: {
+    alignItems: "center",
+    display: "flex",
+    textAlign: "right",
+    lineHeight: 18,
+    fontSize: 13,
+    letterSpacing: 0.3,
+    fontWeight: "500",
+    textDecoration: "underline",
+    position: "absolute",
+  },
+  text23: {
+    width: 19,
+    fontWeight: "700",
+    fontSize: 15,
+    color: "white",
+    top: 75,
+  },
+  rectangleGroup: {
+    left: 9,
+    width: 353,
+  },
+
+  text350:{
+    left: 160,
+    position: "absolute",
+    borderWidth: 1,
+    borderRadius: 30,
+    borderColor: "#00851D",
+    color: "#2cd311",
+    fontWeight: "700",
+    textAlign: "left",
+    fontSize: 14  ,
+    bottom:61,
+    paddingTop: 3,
+    marginTop: -15,
   },
 });
 
