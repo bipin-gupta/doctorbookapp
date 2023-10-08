@@ -18,11 +18,17 @@ const dummyDate = [
   "23, Thur",
   "24, Fri",
   "25, Sat",
+];
+
+const dummyDate1 =[
   "9:00 AM",
   "10:00 AM",
   "11:00 AM",
   "12:00 PM",
   "1:00 PM",
+];
+
+const dummyDate2 = [
   "2:00 PM",
   "3:00 PM",
   "4:00 PM",
@@ -35,6 +41,14 @@ const AppointmentBookingPage = () => {
   const [selectedTime, setSelectedTime] = useState(null);
 
   const handleTimeSlotClick = (time) => {
+    if (time === selectedTime) {
+      setSelectedTime(null); // Unselect the time slot if already selected
+    } else {
+      setSelectedTime(time); // Select the time slot
+    }
+  };
+
+  const handleTimeSlotClick2 = (time) => {
     if (time === selectedTime) {
       setSelectedTime(null); // Unselect the time slot if already selected
     } else {
@@ -91,6 +105,9 @@ const AppointmentBookingPage = () => {
        </View>
       <Text style={[styles.bookAppointment, styles.ophtamologistTypo]}>{`Book
 Appointment`}</Text>
+
+
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{top:150}}>
       {rows.map((row, rowIndex) => (
         <View key={rowIndex}>
           {/* Separate view for the first row with dates */}
@@ -101,6 +118,46 @@ Appointment`}</Text>
                   <Text style={{ color: "black", fontWeight: "bold" }}>
                     {item}
                   </Text>
+                  <TouchableOpacity
+                  key={index}
+                  style={[
+                    styles.timeSlot,
+                    {
+                      backgroundColor:
+                        item === selectedTime ? "#CC9B66" : "#FFFFFF",
+                    },
+                  ]}
+                  onPress={() => handleTimeSlotClick(item)}
+                >
+                  <Text
+                    style={{
+                      color: item === selectedTime ? "#FFFFFF" : "#000000",
+                      fontWeight: item === selectedTime ? "700" : "normal"
+                    }}
+                  >
+                    9:00 AM
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  key={index}
+                  style={[
+                    styles.timeSlot,
+                    {
+                      backgroundColor:
+                        item === selectedTime ? "#CC9B66" : "#FFFFFF",
+                    },
+                  ]}
+                  onPress={() => handleTimeSlotClick2(item)}
+                >
+                  <Text
+                    style={{
+                      color: item === selectedTime ? "#FFFFFF" : "#000000",
+                      fontWeight: item === selectedTime ? "700" : "normal"
+                    }}
+                  >
+                    3:00 PM
+                  </Text>
+                </TouchableOpacity>
                 </View>
               ))}
             </View>
@@ -133,6 +190,7 @@ Appointment`}</Text>
           )}
         </View>
       ))}
+      </ScrollView>
             <View style={styles.groupParent}>
 
         <View style={[styles.swapnilKatareWrapper, styles.wrapperPosition]}>
@@ -230,24 +288,26 @@ const styles = StyleSheet.create({
   },
   dateRow: {
     flexDirection: "row",
+    marginTop: 20,
   },
   dateItem: {
     flex: 1, // Equal width for each date
-    padding: 10,
-    margin: 25,
+    padding: 5,
+    margin: 15,
     alignItems: "center",
     justifyContent: "center",
     
   },
   timeSlotsRow: {
     flexDirection: "row",
+    top: 55,
 
   },
   timeSlot: {
-
     padding: 10,
     margin: 10,
     marginBottom: 19,
+    
     height: 40,
     minWidth: 80, // Minimum width for each time slot
     borderWidth: 1,
@@ -442,16 +502,16 @@ const styles = StyleSheet.create({
   text350:{
     left: 160,
     position: "absolute",
-    borderWidth: 1,
+    borderWidth: 3,
     borderRadius: 30,
     borderColor: "#00851D",
     color: "#2cd311",
     fontWeight: "700",
     textAlign: "left",
-    fontSize: 14  ,
+    fontSize: 12,
     bottom:61,
-    paddingTop: 3,
-    marginTop: -15,
+    marginTop: -25,
+    paddingTop: 4
   },
 });
 
