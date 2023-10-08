@@ -183,15 +183,18 @@ const HorizontalCardGrid = () => {
                   </View>
                 </TouchableOpacity>
                 <Modal
-                  // transparent={false}
+                  transparent={true}
                   style={{
                     backgroundColor: "rgba(255, 255, 255, 0.1)", // Increase the opacity here
                     width: "100%",
                     marginLeft: 0,
                     marginRight: 0,
+                    top:-50,
                     //top: "45%",
                     borderTopLeftRadius: 30,
                     borderTopRightRadius: 30,
+                    bottom:-30,
+                    height: "100%"
                   }}
                   isVisible={visible}
                   onBackButtonPress={() => {

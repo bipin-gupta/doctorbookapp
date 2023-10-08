@@ -6,41 +6,28 @@ import {
   StyleSheet,
   Image,
   ScrollView,
-  PixelRatio
+  PixelRatio,
 } from "react-native";
 import { Card } from "react-native-paper";
 import Feather from "react-native-vector-icons/Feather";
 
+const dummyDate = ["Today", "22, Wed", "23, Thur", "24, Fri", "25, Sat"];
 
-const dummyDate = [
-  "Today",
-  "22, Wed",
-  "23, Thur",
-  "24, Fri",
-  "25, Sat",
-];
+const dummyDate1 = ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM"];
 
-const dummyDate1 =[
-  "9:00 AM",
-  "10:00 AM",
-  "11:00 AM",
-  "12:00 PM",
-  "1:00 PM",
-];
-
-const dummyDate2 = [
-  "2:00 PM",
-  "3:00 PM",
-  "4:00 PM",
-  "5:00 PM",
-  "6:00 PM",
-];
+const dummyDate2 = ["2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM"];
 
 const AppointmentBookingPage = () => {
   const borderWidth = 1 * PixelRatio.get();
+
+  const [selectedTime9AM, setSelectedTime9AM] = useState(null);
+  const [selectedTime3PM, setSelectedTime3PM] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
 
   const handleTimeSlotClick = (time) => {
+    setSelectedTime9AM(null); // Deselect 9:00 AM slot
+    setSelectedTime3PM(null); // Deselect 3:00 PM slot
+
     if (time === selectedTime) {
       setSelectedTime(null); // Unselect the time slot if already selected
     } else {
@@ -48,13 +35,14 @@ const AppointmentBookingPage = () => {
     }
   };
 
-  const handleTimeSlotClick2 = (time) => {
-    if (time === selectedTime) {
-      setSelectedTime(null); // Unselect the time slot if already selected
-    } else {
-      setSelectedTime(time); // Select the time slot
-    }
+  const handleTimeSlotClick9AM = () => {
+    handleTimeSlotClick("9:00 AM");
   };
+
+  const handleTimeSlotClick3PM = () => {
+    handleTimeSlotClick("3:00 PM");
+  };
+
 
   // Split the dummyDate into three rows
   const rows = [];
@@ -63,7 +51,7 @@ const AppointmentBookingPage = () => {
   }
 
   return (
-    <View>
+    <View style={{ marginTop: 150 }}>
       <View style={styles.rectangleGroup}>
         <Image
           style={[styles.uppersliderimage, styles.text23Position]}
@@ -82,7 +70,10 @@ const AppointmentBookingPage = () => {
             <Text style={[styles.km7, styles.bookTypo]}>~3.3km</Text>
             <View style={[styles.parent98, styles.parentLayout]}>
               <Text style={[styles.text98, styles.textTypo]}>98%</Text>
-              <Text style={[styles.text350, styles.text350Position]}> ₹ 350</Text>
+              <Text style={[styles.text350, styles.text350Position]}>
+                {"                                     "}
+                ₹ 350
+              </Text>
 
               <Image
                 style={[styles.iconsThumbsUp, styles.parentLayout]}
@@ -90,159 +81,167 @@ const AppointmentBookingPage = () => {
                 source={require("../assets/images/thumbsup.png")}
               />
             </View>
-        
           </View>
-
-          </View>
-          </View>
-    <ScrollView  contentContainerStyle={styles.container}>
-     <View style={styles.card}>
-     <Image
-        style={[styles.rectangleIcon, styles.rectangleIconPosition]}
-        resizeMode="cover"
-        source={require("../assets/images/imgslider.jpg")}
-      />
-       </View>
-      <Text style={[styles.bookAppointment, styles.ophtamologistTypo]}>{`Book
+        </View>
+      </View>
+      <ScrollView contentContainerStyle={styles.container}>
+        <View style={styles.card}>
+          <Image
+            style={[styles.rectangleIcon, styles.rectangleIconPosition]}
+            resizeMode="cover"
+            source={require("../assets/images/imgslider.jpg")}
+          />
+        </View>
+        <Text style={[styles.bookAppointment, styles.ophtamologistTypo]}>{`Book
 Appointment`}</Text>
 
-
-      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{top:150}}>
-      {rows.map((row, rowIndex) => (
-        <View key={rowIndex}>
-          {/* Separate view for the first row with dates */}
-          {rowIndex === 0 ? (
-            <View style={styles.dateRow}>
-              {row.map((item, index) => (
-                <View key={index} style={styles.dateItem}>
-                  <Text style={{ color: "black", fontWeight: "bold" }}>
-                    {item}
-                  </Text>
-                  <TouchableOpacity
-                  key={index}
-                  style={[
-                    styles.timeSlot,
-                    {
-                      backgroundColor:
-                        item === selectedTime ? "#CC9B66" : "#FFFFFF",
-                    },
-                  ]}
-                  onPress={() => handleTimeSlotClick(item)}
-                >
-                  <Text
-                    style={{
-                      color: item === selectedTime ? "#FFFFFF" : "#000000",
-                      fontWeight: item === selectedTime ? "700" : "normal"
-                    }}
-                  >
-                    9:00 AM
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  key={index}
-                  style={[
-                    styles.timeSlot,
-                    {
-                      backgroundColor:
-                        item === selectedTime ? "#CC9B66" : "#FFFFFF",
-                    },
-                  ]}
-                  onPress={() => handleTimeSlotClick2(item)}
-                >
-                  <Text
-                    style={{
-                      color: item === selectedTime ? "#FFFFFF" : "#000000",
-                      fontWeight: item === selectedTime ? "700" : "normal"
-                    }}
-                  >
-                    3:00 PM
-                  </Text>
-                </TouchableOpacity>
-                </View>
-              ))}
-            </View>
-          ) : (
-            // Separate view for other rows with time slots
-            <View style={styles.timeSlotsRow}>
-              {row.map((item, index) => (
-                <TouchableOpacity
-                  key={index}
-                  style={[
-                    styles.timeSlot,
-                    {
-                      backgroundColor:
-                        item === selectedTime ? "#CC9B66" : "#FFFFFF",
-                    },
-                  ]}
-                  onPress={() => handleTimeSlotClick(item)}
-                >
-                  <Text
-                    style={{
-                      color: item === selectedTime ? "#FFFFFF" : "#000000",
-                      fontWeight: item === selectedTime ? "700" : "normal"
-                    }}
-                  >
-                    {item}
-                  </Text>
-                </TouchableOpacity>
-              ))}
-            </View>
-          )}
-        </View>
-      ))}
-      </ScrollView>
-            <View style={styles.groupParent}>
-
-        <View style={[styles.swapnilKatareWrapper, styles.wrapperPosition]}>
-          <Text style={[styles.swapnilKatare, styles.nameposition]}>
-            Swapnil Katare
-          </Text>
-        </View>
-        <View style={styles.m24Wrapper}>
-        <Text style={styles.nameposition}>
-            <Text style={[styles.mtext]}>M/</Text>
-            <Text style={styles.m24}>24</Text> 
-           
-          </Text>
-          <View>
-            <Text style={[styles.text20, styles.textTypo1]}>8735468097</Text>
-            </View>
-            
-        </View>
-        
-        </View>
-        
-      <TouchableOpacity
-        style={[
-          styles.bookNowButton,
-          {  borderColor: selectedTime ? "#1A936F" : "#CCCCCC",
-          
-          borderWidth: 2, 
-          borderRadius: 10, 
-         },
-        ]}
-        disabled={!selectedTime}
+<ScrollView
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        style={{ top: 150 }}
       >
-        <Text
-          style={{
-            fontWeight: selectedTime ? "700" : "normal", 
+        {rows.map((row, rowIndex) => (
+          <View key={rowIndex}>
+            {/* Separate view for the first row with dates */}
+            {rowIndex === 0 ? (
+              <View style={styles.dateRow}>
+                {row.map((item, index) => (
+                  <View key={index} style={styles.dateItem}>
+                    <Text
+                      style={{
+                        color: "black",
+                        fontWeight: item === "Today" ? "bold" : "bold",
+                        textDecorationLine:
+                          item === "Today" ? "underline" : "none",
+                      }}
+                    >
+                      {item}
+                    </Text>
 
-            color: selectedTime ? "#1A936F" : "#CCCCCC", 
-            height: 35,
-            width: 242,
-            borderRadius: 2,
-            borderColor: "#CACACA",
-            fontSize: 22,
-            textAlign: "center",
-          }}
+                    <TouchableOpacity
+                      key={index}
+                      style={[
+                        styles.timeSlot,
+                        {
+                          backgroundColor:
+                            item === selectedTime9AM ? "#CC9B66" : "#FFFFFF",
+                        },
+                      ]}
+                      onPress={() => handleTimeSlotClick9AM()}
+                    >
+                      <Text
+                        style={{
+                          color:
+                            item === selectedTime9AM ? "#FFFFFF" : "#000000",
+                          fontWeight:
+                            item === selectedTime9AM ? "700" : "normal",
+                        }}
+                      >
+                        9:00 AM
+                      </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      key={index}
+                      style={[
+                        styles.timeSlot,
+                        {
+                          backgroundColor:
+                            item === selectedTime3PM ? "#CC9B66" : "#FFFFFF",
+                        },
+                      ]}
+                      onPress={() => handleTimeSlotClick3PM()}
+                    >
+                      <Text
+                        style={{
+                          color:
+                            item === selectedTime3PM ? "#FFFFFF" : "#000000",
+                          fontWeight:
+                            item === selectedTime3PM ? "700" : "normal",
+                        }}
+                      >
+                        3:00 PM
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                ))}
+              </View>
+            ) : (
+              // Separate view for other rows with time slots
+              <View style={styles.timeSlotsRow}>
+                {row.map((item, index) => (
+                  <TouchableOpacity
+                    key={index}
+                    style={[
+                      styles.timeSlot,
+                      {
+                        backgroundColor:
+                          item === selectedTime ? "#CC9B66" : "#FFFFFF",
+                      },
+                    ]}
+                    onPress={() => handleTimeSlotClick(item)}
+                  >
+                    <Text
+                      style={{
+                        color: item === selectedTime ? "#FFFFFF" : "#000000",
+                        fontWeight: item === selectedTime ? "700" : "normal",
+                      }}
+                    >
+                      {item}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+            )}
+          </View>
+        ))}
+      </ScrollView>
+        <View style={styles.groupParent}>
+          <View style={[styles.swapnilKatareWrapper, styles.wrapperPosition]}>
+            <Text style={[styles.swapnilKatare, styles.nameposition]}>
+              Swapnil Katare
+            </Text>
+          </View>
+          <View style={styles.m24Wrapper}>
+            <Text style={styles.nameposition}>
+              <Text style={[styles.mtext]}>M/</Text>
+              <Text style={styles.m24}>24</Text>
+            </Text>
+            <View>
+              <Text style={[styles.text20, styles.textTypo1]}>8735468097</Text>
+            </View>
+          </View>
+        </View>
+
+        <TouchableOpacity
+          style={[
+            styles.bookNowButton,
+            {
+              borderColor: selectedTime ? "#1A936F" : "#CCCCCC",
+
+              borderWidth: 2,
+              borderRadius: 10,
+            },
+          ]}
+          disabled={!selectedTime}
         >
-          Confirm Appointment
-        </Text>
-        
-      </TouchableOpacity>
-      
-    </ScrollView>
-   
+          <Text
+            style={{
+              fontWeight: selectedTime ? "700" : "normal",
+
+              color: selectedTime ? "#1A936F" : "#CCCCCC",
+              height: 35,
+              width: 242,
+              borderRadius: 2,
+              borderColor: "#CACACA",
+              fontSize: 22,
+              textAlign: "center",
+            }}
+          >
+            Confirm Appointment
+          </Text>
+        </TouchableOpacity>
+      </ScrollView>
+
       <Text style={[styles.newUser, styles.userTypo]}>New user</Text>
       <Text style={[styles.changeUser, styles.userTypo]}>Change user</Text>
     </View>
@@ -250,7 +249,6 @@ Appointment`}</Text>
 };
 
 const styles = StyleSheet.create({
-  
   container: {
     flexGrow: 1,
     height: 457,
@@ -258,8 +256,6 @@ const styles = StyleSheet.create({
     backgroundColor: "rgb(255, 255, 255)",
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-
-    
   },
   title: {
     fontSize: 20,
@@ -270,14 +266,14 @@ const styles = StyleSheet.create({
     top: 41,
     left: 19,
     marginVertical: 10,
-    width: 340, 
+    width: 340,
     backgroundColor: "white",
-    
+
     // Set the width of the card as needed
   },
   cardContent: {
     top: 41,
-    
+
     left: 0,
     alignItems: "center",
   },
@@ -293,21 +289,20 @@ const styles = StyleSheet.create({
   dateItem: {
     flex: 1, // Equal width for each date
     padding: 5,
-    margin: 15,
+    margin: 10,
     alignItems: "center",
     justifyContent: "center",
-    
   },
   timeSlotsRow: {
     flexDirection: "row",
     top: 55,
-
   },
   timeSlot: {
-    padding: 10,
-    margin: 10,
-    marginBottom: 19,
-    
+    padding: 0,
+    marginTop: 19,
+
+    marginBottom: 5,
+
     height: 40,
     minWidth: 80, // Minimum width for each time slot
     borderWidth: 1,
@@ -322,7 +317,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 10,
     marginBottom: 10,
-
   },
   bookAppointment: {
     top: 19,
@@ -349,9 +343,8 @@ const styles = StyleSheet.create({
   swapnilKatare: {
     fontWeight: "500",
     fontFamily: "Roboto",
-   
   },
-  nameposition:{
+  nameposition: {
     color: "#414141",
     lineHeight: 19,
     letterSpacing: 0.3,
@@ -371,7 +364,6 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   groupParent: {
-    
     left: 90,
     height: 61,
     position: "absolute",
@@ -381,19 +373,19 @@ const styles = StyleSheet.create({
     top: 130,
   },
 
-  mtext:{
+  mtext: {
     color: "#414141",
-    fontWeight: "500"
+    fontWeight: "500",
   },
-  m24:{
-    color:"#414141",
-    fontWeight:"300"
+  m24: {
+    color: "#414141",
+    fontWeight: "300",
   },
-  text20:{
+  text20: {
     top: 20,
     fontSize: 14,
     letterSpacing: 0.2,
-    color:"#414141"
+    color: "#414141",
   },
   changeUser: {
     top: 0,
@@ -401,37 +393,35 @@ const styles = StyleSheet.create({
     color: "#1a936f",
     width: 75,
   },
-  // upperslider 
+  // upperslider
   gouriKarnurkar1: {
     fontSize: 16,
     fontWeight: "500",
     top: 0,
-    color:"#FFF",
-    fontFamily:"Roboto"
+    color: "#FFF",
+    fontFamily: "Roboto",
   },
-  dentist:{
-    color:"#D5D5D5",
-    fontSize:14,
+  dentist: {
+    color: "#D5D5D5",
+    fontSize: 14,
     fontWeight: "700",
-    fontFamily:"Roboto"
+    fontFamily: "Roboto",
   },
-  km7:{
-    color:"#0074DF",
-    fontSize:14,
+  km7: {
+    color: "#0074DF",
+    fontSize: 14,
     fontWeight: "500",
-    fontFamily:"Roboto"
+    fontFamily: "Roboto",
   },
   parent98: {
     left: 58,
     width: 41,
     bottom: 17,
-
   },
   text98: {
     fontSize: 12,
     width: 26,
     fontWeight: "500",
-
   },
   textTypo: {
     color: "white",
@@ -466,11 +456,12 @@ const styles = StyleSheet.create({
 
     left: 280,
     color: "#1a936f",
-    borderBottomWidth: 1, borderBottomColor: '#1a936f' ,
-
+    borderBottomWidth: 1,
+    borderBottomColor: "#1a936f",
   },
   newUser: {
-    borderBottomWidth: 1, borderBottomColor: '#0074DF' ,
+    borderBottomWidth: 1,
+    borderBottomColor: "#0074DF",
     top: 355,
 
     left: 300,
@@ -499,7 +490,7 @@ const styles = StyleSheet.create({
     width: 353,
   },
 
-  text350:{
+  text350: {
     left: 160,
     position: "absolute",
     borderWidth: 3,
@@ -509,11 +500,10 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     textAlign: "left",
     fontSize: 12,
-    bottom:61,
+    bottom: 61,
     marginTop: -25,
-    paddingTop: 4
+    marginHorizontal:10
   },
 });
-
 
 export default AppointmentBookingPage;
